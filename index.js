@@ -38,6 +38,7 @@ const connectDB = async () => {
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
+
 app.use("/api/v1/auth", authRoute); //register, login
 app.use("/api/v1/users", userRoute); //crud user
 app.use("/api/v1/doctors", doctorRoute); //crud doctor

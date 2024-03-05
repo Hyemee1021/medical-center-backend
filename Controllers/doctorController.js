@@ -1,5 +1,5 @@
 import Doctor from "../models/DoctorSchema.js";
-
+import Booking from "../models/BookingSchema.js";
 //models
 export const updateDoctor = async (req, res) => {
   const id = req.params.id;
@@ -99,19 +99,19 @@ export const getAllDoctor = async (req, res) => {
 };
 
 export const getDoctorProfile = async (req, res) => {
-  const doctorId = req.userId;
+  const userId = req.userId;
 
   try {
     // let user = null;
-    const doctor = await Doctor.findById(userId);
+    const user = await Doctor.findById(userId);
 
-    if (!doctor) {
+    if (!user) {
       res.status(404).json({ message: "Doctor not found" });
     }
 
-    const appointments = await Booking.find({ doctor: doctorId });
+    const appointments = await Booking.find({ doctor: userId });
 
-    const { password, ...rest } = doctor._doc;
+    const { password, ...rest } = user._doc;
 
     res.status(200).json({
       success: true,

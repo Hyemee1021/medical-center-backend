@@ -77,8 +77,7 @@ export const login = async (req, res) => {
     //asign either doctor or patient
     if (patient) {
       user = patient;
-    }
-    if (doctor) {
+    } else if (doctor) {
       user = doctor;
     }
 

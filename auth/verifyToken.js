@@ -5,7 +5,7 @@ import User from "../models/UserSchema.js";
 export const authenticate = async (req, res, next) => {
   //get token from headers
   const authToken = req.headers.authorization;
-
+  console.log(authToken);
   //check token is exist
   if (!authToken || !authToken.startsWith("Bearer ")) {
     return res.status(401).json({
@@ -50,10 +50,10 @@ export const restrict = (roles) => async (req, res, next) => {
 
   if (patient) {
     user = patient;
-  }
-
-  if (doctor) {
+  } else if (doctor) {
     user = doctor;
+  } else {
+    return res.status(404).json({ message: "User not found" });
   }
 
   if (!roles.includes(user.role)) {
