@@ -91,7 +91,7 @@ export const getAllDoctor = async (req, res) => {
       data: doctors,
     });
   } catch (error) {
-    res.status(500).json({
+    res.status(404).json({
       success: false,
       message: "Not update",
     });
